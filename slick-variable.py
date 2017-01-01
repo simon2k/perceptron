@@ -1,6 +1,5 @@
 from matplotlib.colors import ListedColormap
 from sklearn import datasets
-from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
@@ -59,6 +58,38 @@ def plot_decisions_regions(X, y, classifier, test_idx=None, resolution=0.02):
 
 
 plot_decisions_regions(X_combined_std, y_combined, classifier=svm, test_idx=range(105, 150))
+
+plt.xlabel('petal length [standarized]')
+plt.ylabel('petal width [standarized]')
+plt.legend(loc='upper left')
+plt.show()
+
+
+svm_rbf = SVC(kernel='rbf', C=1.0, random_state=0, gamma=0.2)
+svm_rbf.fit(X_train_std, y_train)
+
+plot_decisions_regions(X_combined_std, y_combined, classifier=svm_rbf, test_idx=range(105, 150))
+
+plt.xlabel('petal length [standarized]')
+plt.ylabel('petal width [standarized]')
+plt.legend(loc='upper left')
+plt.show()
+
+
+svm_rbf = SVC(kernel='rbf', C=1.0, random_state=0, gamma=1.0)
+svm_rbf.fit(X_train_std, y_train)
+
+plot_decisions_regions(X_combined_std, y_combined, classifier=svm_rbf, test_idx=range(105, 150))
+
+plt.xlabel('petal length [standarized]')
+plt.ylabel('petal width [standarized]')
+plt.legend(loc='upper left')
+plt.show()
+
+svm_rbf = SVC(kernel='rbf', C=1.0, random_state=0, gamma=100.0)
+svm_rbf.fit(X_train_std, y_train)
+
+plot_decisions_regions(X_combined_std, y_combined, classifier=svm_rbf, test_idx=range(105, 150))
 
 plt.xlabel('petal length [standarized]')
 plt.ylabel('petal width [standarized]')
