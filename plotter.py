@@ -1,9 +1,14 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
+
 class Plotter(object):
-    def __init__(self, plt):
+    def __init__(self, xlabel, ylabel, legend_loc):
         self.plt = plt
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+        self.legend_loc = legend_loc
 
     def plot_decision_regions(self, X, y, classifier, resolution=0.02):
         markers = ('s', 'x', 'o', '^', 'v')
@@ -27,13 +32,13 @@ class Plotter(object):
             ).T
         )
         Z = Z.reshape(xx1.shape)
-        self.plt.contourf(xx1, xx2, Z, alpha=0.4, cmap=cmap)
+        plt.contourf(xx1, xx2, Z, alpha=0.4, cmap=cmap)
 
-        self.plt.xlim(xx1.min(), xx1.max())
-        self.plt.ylim(xx2.min(), xx2.max())
+        plt.xlim(xx1.min(), xx1.max())
+        plt.ylim(xx2.min(), xx2.max())
 
         for idx, cl in enumerate(np.unique(y)):
-            self.plt.scatter(
+            plt.scatter(
                 x=X[y == cl, 0],
                 y=X[y == cl, 1],
                 alpha=0.8,
@@ -41,3 +46,8 @@ class Plotter(object):
                 marker=markers[idx],
                 label=cl
             )
+
+        plt.xlabel(self.xlabel)
+        plt.ylabel(self.ylabel)
+        plt.legend(loc=self.legend_loc)
+        plt.show()
