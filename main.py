@@ -1,8 +1,9 @@
-from perceptron import *
-from plotter import *
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+
+from basic.perceptron import *
+from plotter import *
 
 df = pd.read_csv('./iris-data.csv', header=None)
 
